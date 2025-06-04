@@ -1,0 +1,681 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <title>MyWeb</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=LXGW+WenKai+TC&display=swap');
+
+body {
+    background-image: url(https://i.pinimg.com/736x/67/15/a8/6715a8c8aa80c766b10e9a2174aa3313.jpg);
+    background-size: cover;
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    color: white;
+    background-attachment: fixed;
+    font-family: "LXGW WenKai TC", cursive;
+    padding-top: 55px;
+}
+
+.navbar {
+    background-color: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(6px);
+}
+
+.navbar-light .navbar-brand {
+    color: #fff;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: #fff;
+}
+
+    .navbar-light .navbar-nav .active > .nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show > .nav-link {
+        background-color: #FFFFFF;
+        color: rgba(0,0,0,.9);
+    }
+
+.navbar-light .navbar-toggler {
+    color: #fff;
+}
+
+.navbar-light .navbar-brand:focus, .navbar-light .navbar-brand:hover {
+    color: #d984e4;
+}
+
+.navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover {
+    color: #d984e4;
+}
+
+.box {
+    background-color: rgba(50,50,50,0.6);
+}
+
+.myphoto {
+    width: 160px;
+}
+.carousel-caption {
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    padding: 55px 15px;
+    letter-spacing: 10px;
+    color: white;
+    background: linear-gradient(transparent 0%,black 100%);
+    width: 100%;
+    padding-right: 30px;
+    padding-bottom: 35px;
+}
+    </style>
+</head>
+
+<body>
+      <style>
+        .trail {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    background-color: #d984e4;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.3;
+    transition: transform 0.1s ease-out;
+    
+}
+.toTop-arrow {
+width: 2.5rem;
+height: 2.5rem;
+padding: 0;
+margin: 0;
+border: 0;
+border-radius: 33%;
+opacity: 0.6;
+background: #000;
+cursor: pointer;
+position:fixed;
+right: 1rem;
+bottom: 1rem;
+display: none;
+}
+.toTop-arrow::before, .toTop-arrow::after {
+width: 18px;
+height: 5px;
+border-radius: 3px;
+background:rgb(133, 133, 183);
+position: absolute;
+content: "";
+}
+.toTop-arrow::before {
+transform: rotate(-45deg) translate(0, -50%);
+left: 0.5rem;
+}
+.toTop-arrow::after {
+transform: rotate(45deg) translate(0, -50%);
+right: 0.5rem;
+}
+.toTop-arrow:focus {outline: none;}
+    </style>
+<script >
+    const trailCount = 8;
+const trails = [];
+
+for (let i = 0; i < trailCount; i++) {
+    const dot = document.createElement('div');
+    dot.classList.add('trail');
+    dot.style.opacity = `${0.3 - i * 0.02}`;
+    dot.style.transform = `scale(${1 - i * 0.05})`;
+    document.body.appendChild(dot);
+    trails.push({ element: dot, x: 0, y: 0 });
+}
+
+let mouseX = 0, mouseY = 0;
+
+document.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+});
+
+function animateTrail() {
+    let x = mouseX, y = mouseY;
+
+    trails.forEach((trail) => {
+        trail.x += (x - trail.x) * 0.3;
+        trail.y += (y - trail.y) * 0.3;
+
+        trail.element.style.left = `${trail.x}px`;
+        trail.element.style.top = `${trail.y}px`;
+
+        x = trail.x;
+        y = trail.y;
+    });
+
+    requestAnimationFrame(animateTrail);
+}
+
+animateTrail();
+
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<button type="button" id="BackTop" class="toTop-arrow"></button>
+<script >$(function(){
+$('#BackTop').click(function(){
+$('html,body').animate({scrollTop:0}, 333);
+});
+$(window).scroll(function() {
+if ( $(this).scrollTop() > 300 ){
+$('#BackTop').fadeIn(222);
+} else {
+$('#BackTop').stop().fadeOut(222);
+}
+}).scroll();
+});
+</script>
+  <div class="top">
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">企鵝的魚缸</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link " aria-current="page" href="index.html">首頁</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active"  href="about.html">關於</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="my_love_song.html">分享</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">聯絡我</a>
+                    </li>
+                    <li class="nav-item dropdown ">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            企鵝選單
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="project.html">繪圖</a></li>
+                            <li><a class="dropdown-item" href="Vedio.html">剪輯</a></li>
+                            <li><a class="dropdown-item" href="Photo.html">照片</a></li>  
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="Else.html">其他</a></li>                        
+                        </ul>
+                    </li>                     
+                </ul>               
+            </div>
+        </div>
+    </nav>
+</div>
+
+<div class="container mt-2 mb-2">
+  <div class="row">
+    <div class="col-12 col-md-12 ">
+      <div class="box px-4 shadow rounded"><br>
+        <img src="images/photo.png" alt="我的照片" class="img-fluid rounded-circle my-3 mx-auto d-block" style="max-width: 250px; ">
+        <h1 class="text-center" style="color:#dcc2f2">關於我</h1>
+        <h2 class="mt-4"> 學習經歷</h2>
+          <div class="timeline-wrapper">
+            <div class="row timeline-item timeline-left">
+              <div class="col-md-6 pr-md-5 text-right">
+                <div class="timeline-box">
+                  <h5><strong>2011 - 2017｜文欣國小</strong></h5>
+                  <h6>擔任</h6>
+                  <ul class="list-unstyled">
+                    <li>班長</li>
+                    <li>副班長</li>
+                    <li>衛生股長</li>
+                    <li>風紀股長</li>
+                  </ul>
+                  <h6 class="mt-2">獲得</h6>
+                  <ul class="list-unstyled">
+                    <li>心算七段特優</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-md-6"></div>
+            </div>
+            <div class="row timeline-item">
+              <div class="col-md-6"></div>
+              <div class="col-md-6 pl-md-5">
+                <div class="timeline-box">
+                  <h5><strong>2017 - 2020｜大崗國中</strong></h5>
+                  <h6>擔任</h6>
+                  <ul class="list-unstyled">
+                    <li>班長</li>
+                    <li>學藝股長</li>
+                    <li>化學課與輔導課小老師</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="row timeline-item timeline-left">
+              <div class="col-md-6 pr-md-5 text-right">
+                <div class="timeline-box">
+                  <h5><strong>2020 - 2023｜林口高中</strong></h5>
+                  <h6>擔任</h6>
+                  <ul class="list-unstyled">
+                    <li>總務股長</li>
+                    <li>國文課小老師</li>
+                    <li>英語營隊隊輔</li>
+                    <li>國中參訪日隊輔</li>
+                    <li>戲劇演出燈控</li>
+                    <li>招生影片工作人員</li>
+                  </ul>
+                  <h6 class="mt-2">參與</h6>
+                  <ul class="list-unstyled">
+                    <li>畢業影片製作</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-md-6"></div>
+            </div>
+            <div class="row timeline-item">
+              <div class="col-md-6"></div>
+              <div class="col-md-6 pl-md-5">
+                <div class="timeline-box">
+                  <h5><strong>2023 - Now｜國立嘉義大學</strong></h5>
+                  <h6>擔任</h6>
+                  <ul class="list-unstyled">
+                    <li>籃球社球經</li>
+                    <li>總務股長</li>
+                  </ul>
+                  <h6 class="mt-2">參加</h6>
+                  <ul class="list-unstyled">
+                    <li>攝影工作坊</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        <h2 class="mt-4"> 技能</h2>
+          <ul class="list-unstyled skill-list" id="skill-section">
+            <li class="mb-2">
+              <h5 style="color:#d9d7db">攝影</h5>
+              <div class="progress mt-1" style="height: 16px;">
+                <div class="progress-bar" data-percentage="90" style="width: 0%; background-color: #a582b5;"></div>
+              </div>
+            </li>
+            <li class="mb-2">
+              <h5 style="color:#d9d7db">設計</h5>
+              <div class="progress mt-1" style="height: 16px;">
+                <div class="progress-bar" data-percentage="85" style="width: 0%; background-color: #a582b5;"></div>
+              </div>
+            </li>
+            <li class="mb-2">
+              <h5 style="color:#d9d7db">繪畫</h5>
+              <div class="progress mt-1" style="height: 16px;">
+                <div class="progress-bar" data-percentage="70" style="width: 0%; background-color: #a582b5;"></div>
+              </div>
+            </li>
+            <li class="mb-2">
+              <h5 style="color:#d9d7db">影片剪輯</h5>
+              <div class="progress mt-1" style="height: 16px;">
+                <div class="progress-bar" data-percentage="80" style="width: 0%; background-color: #a582b5;"></div>
+              </div>
+            </li>
+            <li class="mb-2">
+              <h5 style="color:#d9d7db">網頁</h5>
+              <div class="progress mt-1" style="height: 16px;">
+                <div class="progress-bar" data-percentage="65" style="width: 0%; background-color: #a582b5;"></div>
+              </div>
+            </li>
+          </ul>
+          <script >
+            const observer = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const bars = document.querySelectorAll(".progress-bar");
+            bars.forEach(bar => {
+                const target = parseInt(bar.getAttribute("data-percentage"));
+                let width = 0;
+
+                const fill = setInterval(() => {
+                    if (width >= target) {
+                        clearInterval(fill);
+                    } else {
+                        width++;
+                        bar.style.width = width + "%";
+                    }
+                }, 10);
+            });
+            obs.unobserve(entry.target);
+        }
+    });
+}, {
+    threshold: 0.3
+});
+
+const skillSection = document.getElementById("skill-section");
+if (skillSection) {
+    observer.observe(skillSection);
+}
+
+          </script>
+        <h2 class="mt-3">興趣</h2>
+          <div class=" interest-list">
+            <span class="badge interest-card">追劇</span>
+            <span class="badge interest-card">看小說</span>
+            <span class="badge interest-card">拍照</span>
+            <span class="badge interest-card">旅行</span>
+            <span class="badge interest-card">聽音樂</span>
+            <span class="badge interest-card">唱歌</span>
+            <span class="badge interest-card">彈吉他</span>
+          </div>
+        <h2 class="mt-3">企鵝的Hashtag</h2>
+          <div class="tag-zone position-relative mx-auto" style="width: 80%; max-width: 600px; height: 320px; border: 1px dashed #ffffff; border-radius: 12px; background: #51616f;">
+            <div class="tag-card" style="background-color: #4f5b78;">#企鵝出沒請注意</div>
+            <div class="tag-card" style="background-color: #637d90;">#今天也想耍廢</div>
+            <div class="tag-card" style="background-color: #637d90;">#別催我交作業</div>
+            <div class="tag-card" style="background-color: #5c9799;">#我愛拍照</div>
+            <div class="tag-card" style="background-color: #5c9799;">#熬夜追劇中</div>
+            <div class="tag-card" style="background-color: #5c9799;">#正在等更新</div>
+            <div class="tag-card" style="background-color: #5c9799;">#咖啡續命中</div>
+            <div class="tag-card" style="background-color: #55747b;">#是凌晨五點的太陽</div>
+            <div class="tag-card" style="background-color: #55747b;">#大學生精神狀態</div>
+            <div class="tag-card" style="background-color: #55747b;">#我想睡覺</div>
+            <div class="tag-card" style="background-color: #55747b;">#社恐日常</div>
+            <div class="tag-card" style="background-color: #55747b;">#好想去旅行</div>
+            <div class="tag-card" style="background-color: #6d97a4;">#我愛教案 教案愛我</div>
+            <div class="tag-card" style="background-color: #6d97a4;">#這是必修</div>
+            <div class="tag-card" style="background-color: #6d97a4;">#不想做報告</div>
+            <div class="tag-card" style="background-color: #6d97a4;">#期中快到了怎麼辦</div>
+            <div class="tag-card" style="background-color: #6d97a4;">#期末報告怎麼辦</div>
+          </div>
+          <script>
+            const cards = document.querySelectorAll(".tag-card");
+const zone = document.querySelector(".tag-zone");
+
+cards.forEach(card => {
+    const zoneRect = zone.getBoundingClientRect();
+
+    // 預設隨機位置（確保不超出容器）
+    const randomX = Math.random() * (zone.offsetWidth - 150); // 卡片寬度預估
+    const randomY = Math.random() * (zone.offsetHeight - 60); // 卡片高度預估
+    card.style.left = `${randomX}px`;
+    card.style.top = `${randomY}px`;
+
+    let isDragging = false;
+    let offsetX = 0, offsetY = 0;
+
+    card.addEventListener("mousedown", (e) => {
+        isDragging = true;
+
+        const cardRect = card.getBoundingClientRect();
+        offsetX = e.clientX - cardRect.left;
+        offsetY = e.clientY - cardRect.top;
+
+        card.style.zIndex = 999;
+    });
+
+    document.addEventListener("mousemove", (e) => {
+        if (!isDragging) return;
+
+        const zoneRect = zone.getBoundingClientRect();
+        const cardWidth = card.offsetWidth;
+        const cardHeight = card.offsetHeight;
+
+        // 滑鼠位置相對於 zone
+        let x = e.clientX - zoneRect.left - offsetX;
+        let y = e.clientY - zoneRect.top - offsetY;
+
+        // 限制拖曳邊界（不能超出 zone）
+        x = Math.max(0, Math.min(x, zone.offsetWidth - cardWidth));
+        y = Math.max(0, Math.min(y, zone.offsetHeight - cardHeight));
+
+        card.style.left = `${x}px`;
+        card.style.top = `${y}px`;
+    });
+
+    document.addEventListener("mouseup", () => {
+        isDragging = false;
+        card.style.zIndex = "";
+    });
+});
+          </script>
+    </div>
+  </div>
+</div>
+<style>
+  /* 技能*/
+.skill-list {
+    padding-left: 2rem; /* 約等於兩個 tab */
+}
+
+    .skill-list li {
+        transition: all 0.3s ease;
+        border-radius: 8px;
+        padding: 8px 12px;
+    }
+
+        .skill-list li:hover {
+            background-color: #c6c6c6;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(165, 130, 181, 0.1);
+        }
+
+        .skill-list li h5 {
+            transition: color 0.3s ease;
+        }
+
+        .skill-list li:hover h5 {
+            color: #242424;
+        }
+/* 興趣*/
+.interest-card {
+    display: inline-block;
+    background: #f8f9fa;
+    padding: 10px 20px;
+    margin: 6px;
+    border-radius: 30px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+    transition: all 0.25s ease-in-out;
+    font-weight: 600;
+    color: #5a5a5a;
+    font-size: 1.5rem;
+    cursor: default;
+}
+
+    .interest-card:hover {
+        background: #727387;
+        color: #dac5e4;
+        transform: scale(1.05);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+.interest-list {
+    padding-left: 2rem; /* 約等於兩個 tab */
+}
+/* TAG*/
+.tag-zone {
+    position: relative;
+    overflow: hidden;
+    height: 400px;
+    background-color: #f8f9fa;
+    border-radius: 12px;
+    padding: 12px;
+}
+
+.tag-card {
+    position: absolute;
+    color: white;
+    padding: 10px 16px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    cursor: grab;
+    font-weight: 500;
+    user-select: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+    .tag-card:active {
+        cursor: grabbing;
+        transform: scale(1.05);
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+    }
+  .timeline-wrapper {
+    position: relative;
+    padding: 40px 0;
+}
+
+    .timeline-wrapper::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 2px;
+        height: 100%;
+        background-color: #dee2e6;
+        z-index: 1;
+    }
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 50px;
+}
+
+    .timeline-item::before {
+        content: "";
+        position: absolute;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 12px;
+        height: 12px;
+        background-color: #6c757d;
+        border: 2px solid white;
+        border-radius: 50%;
+        box-shadow: 0 0 0 3px #ced4da;
+        transition: background-color 0.3s ease;
+        z-index: 3;
+    }
+
+    .timeline-item:hover::before {
+        background-color: #343a40;
+    }
+
+/* 卡片樣式通用 */
+
+.timeline-box {
+    position: relative;
+    background: #fff;
+    padding: 20px;
+    color: #212529;
+    border-left: 4px solid transparent;
+    transition: all 0.3s ease;
+    border-radius: 6px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
+    z-index: 2;
+}
+
+    .timeline-box:hover {
+        background-color: #f8f9fa;
+        border-left: 4px solid #6c757d;
+        padding-left: 24px;
+    }
+
+    .timeline-box h5 {
+        font-weight: 700;
+        color: #343a40;
+    }
+
+    .timeline-box h6 {
+        font-weight: 700;
+        color: #495057;
+        margin-bottom: 0.3rem;
+    }
+
+    .timeline-box ul {
+        padding-left: 1.2rem;
+        margin-bottom: 0;
+    }
+
+        .timeline-box ul li {
+            color: #6c757d;
+            font-weight: 500;
+        }
+
+/* 左邊對齊的樣式 */
+.timeline-left .timeline-box {
+    border-left: none;
+    border-right: 4px solid transparent;
+    text-align: right;
+}
+
+    .timeline-left .timeline-box:hover {
+        background-color: #f8f9fa;
+        border-right: 4px solid #6c757d;
+        padding-right: 24px;
+    }
+
+    .timeline-left .timeline-box ul {
+        padding-right: 1.2rem;
+        padding-left: 0;
+        list-style-position: inside;
+    }
+
+        .timeline-left .timeline-box ul li {
+            text-align: right;
+        }
+
+/* RWD 手機模式：單邊排版、時間線靠左 */
+@media (max-width: 768px) {
+    .timeline-wrapper::before,
+    .timeline-item::before {
+        left: 16px;
+    }
+
+    .timeline-box {
+        width: calc(100% - 56px); /* 避免因 margin + padding 導致寬度破表 */
+        margin-left: 36px;
+        padding-left: 20px;
+        box-sizing: border-box;
+    }
+
+        .timeline-box:hover {
+            border-left: 4px solid #6c757d;
+            padding-left: 24px;
+        }
+
+    .timeline-left .timeline-box {
+        text-align: left;
+        border-right: none;
+        padding-right: 0;
+    }
+
+        .timeline-left .timeline-box ul,
+        .timeline-left .timeline-box ul li {
+            text-align: left;
+            padding-left: 1.2rem;
+            padding-right: 0;
+        }
+}
+
+</style>
+ <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+    -->
+</body>
+
+</html>

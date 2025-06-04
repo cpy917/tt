@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <title>MyWeb</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=LXGW+WenKai+TC&display=swap');
+
+body {
+    background-image: url(https://i.pinimg.com/736x/67/15/a8/6715a8c8aa80c766b10e9a2174aa3313.jpg);
+    background-size: cover;
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    color: white;
+    background-attachment: fixed;
+    font-family: "LXGW WenKai TC", cursive;
+    padding-top: 55px;
+}
+
+.navbar {
+    background-color: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(6px);
+}
+
+.navbar-light .navbar-brand {
+    color: #fff;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: #fff;
+}
+
+    .navbar-light .navbar-nav .active > .nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show > .nav-link {
+        background-color: #FFFFFF;
+        color: rgba(0,0,0,.9);
+    }
+
+.navbar-light .navbar-toggler {
+    color: #fff;
+}
+
+.navbar-light .navbar-brand:focus, .navbar-light .navbar-brand:hover {
+    color: #d984e4;
+}
+
+.navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover {
+    color: #d984e4;
+}
+
+.box {
+    background-color: rgba(50,50,50,0.6);
+}
+
+.myphoto {
+    width: 160px;
+}
+.carousel-caption {
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    padding: 55px 15px;
+    letter-spacing: 10px;
+    color: white;
+    background: linear-gradient(transparent 0%,black 100%);
+    width: 100%;
+    padding-right: 30px;
+    padding-bottom: 35px;
+}
+    </style>
+</head>
+
+<body>
+    <style>
+        .trail {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    background-color: #d984e4;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.3;
+    transition: transform 0.1s ease-out;
+    
+}
+.toTop-arrow {
+width: 2.5rem;
+height: 2.5rem;
+padding: 0;
+margin: 0;
+border: 0;
+border-radius: 33%;
+opacity: 0.6;
+background: #000;
+cursor: pointer;
+position:fixed;
+right: 1rem;
+bottom: 1rem;
+display: none;
+}
+.toTop-arrow::before, .toTop-arrow::after {
+width: 18px;
+height: 5px;
+border-radius: 3px;
+background:rgb(133, 133, 183);
+position: absolute;
+content: "";
+}
+.toTop-arrow::before {
+transform: rotate(-45deg) translate(0, -50%);
+left: 0.5rem;
+}
+.toTop-arrow::after {
+transform: rotate(45deg) translate(0, -50%);
+right: 0.5rem;
+}
+.toTop-arrow:focus {outline: none;}
+    </style>
+<script >
+    const trailCount = 8;
+const trails = [];
+
+for (let i = 0; i < trailCount; i++) {
+    const dot = document.createElement('div');
+    dot.classList.add('trail');
+    dot.style.opacity = `${0.3 - i * 0.02}`;
+    dot.style.transform = `scale(${1 - i * 0.05})`;
+    document.body.appendChild(dot);
+    trails.push({ element: dot, x: 0, y: 0 });
+}
+
+let mouseX = 0, mouseY = 0;
+
+document.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+});
+
+function animateTrail() {
+    let x = mouseX, y = mouseY;
+
+    trails.forEach((trail) => {
+        trail.x += (x - trail.x) * 0.3;
+        trail.y += (y - trail.y) * 0.3;
+
+        trail.element.style.left = `${trail.x}px`;
+        trail.element.style.top = `${trail.y}px`;
+
+        x = trail.x;
+        y = trail.y;
+    });
+
+    requestAnimationFrame(animateTrail);
+}
+
+animateTrail();
+
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<button type="button" id="BackTop" class="toTop-arrow"></button>
+<script >
+$(function(){
+$('#BackTop').click(function(){
+$('html,body').animate({scrollTop:0}, 333);
+});
+$(window).scroll(function() {
+if ( $(this).scrollTop() > 300 ){
+$('#BackTop').fadeIn(222);
+} else {
+$('#BackTop').stop().fadeOut(222);
+}
+}).scroll();
+});
+</script>
+  <div class="top">
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">企鵝的魚缸</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="index.html">首頁</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link "  href="about.html">關於</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="my_love_song.html">分享</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">聯絡我</a>
+                    </li>
+                    <li class="nav-item dropdown ">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            企鵝選單
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="project.html">繪圖</a></li>
+                            <li><a class="dropdown-item" href="Vedio.html">剪輯</a></li>
+                            <li><a class="dropdown-item" href="Photo.html">照片</a></li>  
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="Else.html">其他</a></li>                        
+                        </ul>
+                    </li>                     
+                </ul>               
+            </div>
+        </div>
+    </nav>
+</div>
+
+    <div class="container mt-2 mb-2">
+        <div class="row">
+            <div class="col-12">
+                <div class="box text-center p-4">
+                  <h1 style="color:#afd6f0">嗨，我是企鵝!</h1>
+                  <h3 style="color:#afd6f0">嘉義大學數位學習設計與管理學系的大二生!</h3>
+                  <p>
+                    我喜歡攝影，也很愛看群像劇和小說，尤其是那種角色多、情感複雜又寫實、燒腦的故事。<br>
+                    做作業的靈感常常來自半夜不睡覺追劇的瞬間還有咖啡的加持。<br>現在還在慢慢摸索自己真正想做什麼。<br>
+                    網站裡的東西都是我邊學邊做的~歡迎逛逛～
+                  </p>
+                  <img src="https://i.pinimg.com/1200x/d3/1d/51/d31d51fe4eded61f212f8a94a5696ec0.jpg" class="rounded mx-auto d-block" width="100%" alt="..."><br>
+                  <h2 class="mb-4 border-bottom pb-2 text-center" > 最新公告</h2>
+                  <marquee height="40" scrollamount="10"><font size="4" color="#d9d7db">大會報告:臨近期末 斷更通知 失聯警告!!</font></marquee>
+                  <div class="d-flex justify-content-center"> 
+                    <div class="announcement-wrapper">
+                        <div class="list-group">
+                            <div class="list-group-item announcement-card mb-3">
+                                <h5 class="fw-bold">小破網站上線啦</h5>
+                                <small>發布日期：2025/05/15</small>
+                                <p class="mt-2">我還在探索自己想走的路，但透過網站慢慢記錄學到的東西、做過的作品，讓我更清楚自己的樣子。這裡會一直更新，感謝你來過！</p>
+                            </div>
+                            <div class="list-group-item announcement-card mb-3">
+                                <h5 class="fw-bold">深夜不睡的產物：新靈感爆發</h5>
+                                <small>發布日期：2025/05/20</small>
+                                <p class="mt-2">昨天凌晨三點邊突然冒出一個專題點子,希望老師會喜歡。</p>
+                            </div>
+                            <div class="list-group-item announcement-card mb-3">
+                                <h5 class="fw-bold">持續更新中</h5>
+                                <small>發布日期：2025/05/22</small>
+                                <p class="mt-2">調整了一些排版，讓版面看起來更清爽，也幫公告加了點顏色 ～如果有跑版或奇怪的地方，請悄悄告訴我！。</p>
+                            </div>
+                            <div class="list-group-item announcement-card mb-3">
+                                <h5 class="fw-bold">暑假任務！</h5>
+                                <small>發布日期：2025/05/27</small>
+                                <p class="mt-2">暑假要跟一群小夥伴去印尼教機器人，懷會順便去玩，總共一個月，有點緊張但也超期待，希望我去那邊有東西可以吃。</p>
+                            </div>
+                            <div class="list-group-item announcement-card mb-3">
+                                <h5 class="fw-bold">攝影作品集更新中</h5>
+                                <small>發布日期：2025/05/28</small>
+                                <p class="mt-2">最近剛交完攝影課期末作業，打算慢慢把其中幾張整理上來。每張照片背後都有一點故事，敬請期待～！</p>
+                            </div>
+                            <div class="list-group-item announcement-card mb-3">
+                                <h5 class="fw-bold">期末爆炸中</h5>
+                                <small>發布日期：2025/06/03</small>
+                                <p class="mt-2">最近忙著趕報告、拍攝、熬夜剪影片（還有偶爾焦慮發呆），網站更新暫時變慢一點點！等我撐過期末週，一定會回來整理新內容～</p>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+            </div> 
+        </div>
+    </div>
+<style>
+    /* 📢 最新公告區塊容器：設定寬度與置中 */
+    .announcement-wrapper {
+        max-width: 650px;
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    /* 📄 單則公告卡片樣式 */
+    .announcement-card {
+        background-color: rgba(164, 157, 204, 0.6); /* 柔霧紫、不會太透明 */
+        border-left: 6px solid #a29bfe; /* 淡紫邊線，作為識別條 */
+        border-top-left-radius: 1rem; /* 左上角圓角 */
+        border-bottom-right-radius: 1rem; /* 右下角圓角 */
+        padding: 1rem 1.5rem;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08); /* 卡片陰影 */
+        transition: all 0.3s ease;
+    }
+
+        /* ✨ Hover 浮起效果 */
+        .announcement-card:hover {
+            background-color: rgba(164, 157, 204, 0.75);
+            transform: translateY(-2px);
+        }
+
+        /* 📝 公告標題樣式 */
+        .announcement-card h5 {
+            font-size: 1.15rem;
+            margin-bottom: 0.2rem;
+            color: #473d7c;
+        }
+
+        /* 📅 發布日期樣式 */
+        .announcement-card small {
+            font-size: 0.85rem;
+            color: #e2e2e2;
+        }
+
+        /* 📃 內文段落樣式（保留原味） */
+        .announcement-card p {
+            margin-top: 0.75rem;
+            margin-bottom: 0;
+            line-height: 1.6;
+            color: #222;
+        }
+
+</style>
+    
+     <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+    -->
+</body>
+
+</html>
